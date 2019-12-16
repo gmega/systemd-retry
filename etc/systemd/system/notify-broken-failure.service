@@ -1,0 +1,11 @@
+[Unit]
+Description=Notify when broken startup fails
+
+[Service]
+Type=oneshot
+ExecStart=/var/lib/brokend/notify-broken.py
+
+# Can set users if required.
+# User=giuliano
+# Group=giuliano
+

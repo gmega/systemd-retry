@@ -1,0 +1,22 @@
+[Unit]
+Description=A transiently broken daemon.
+
+# At most 6 restarts in 5 minutes. 
+StartLimitIntervalSec=300
+# To see startup fail and a notification emmited, lower this number.
+StartLimitBurst=6
+
+# Run notification script (unit) when things break down.
+OnFailure=notify-broken-failure.service
+
+[Service]
+Type=simple
+
+ExecStart=/var/lib/brokend/broken.py
+ExecReload=/usr/bin/kill -9 $MAINPID
+
+Restart=on-failure
+
+# Can set users if required.
+# User=giuliano
+# Group=giuliano
